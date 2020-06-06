@@ -1,6 +1,5 @@
 package BattleShip;
 
-import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.layout.StackPane;
 
@@ -15,11 +14,10 @@ public class Field extends StackPane {
 	
 	public Field() {
 		getChildren().add(tileGroup);
-		setAlignment(Pos.BASELINE_LEFT);
 		
 		for(int y = 0; y < HEIGHT; y++) {
 			for(int x = 0; x < WIDTH; x++) {
-				Tile tile = new Tile(x, y, TILE_SIZE, false);
+				Tile tile = new Tile(x, y, TILE_SIZE);
 				
 				tileGroup.getChildren().add(tile);
 			}

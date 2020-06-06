@@ -5,6 +5,7 @@ import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -49,12 +50,7 @@ public class Main extends Application {
 		playButton.getStyleClass().add("play-button");
 		playButton.setLayoutY(30);
 		
-		BorderPane border = new BorderPane();
-		border.setLeft(buildSetupField());
-		border.setRight(new ResourceBox());
-		
-		Scene setupScene = new Scene(border, 750, 750);
-		setupScene.getStylesheets().add("BattleShip/Styles/Misc.css");
+		Scene setupScene = new Scene(buildSetupField(), 750, 750);
 		playButton.setOnAction(e -> window.setScene(setupScene));
 		
 		// Exit Button
@@ -73,10 +69,18 @@ public class Main extends Application {
 		return mainMenu;
 	}
 	
-	private StackPane buildSetupField() {
-		SetupField sf = new SetupField();
+	private BorderPane buildSetupField() {
+		BorderPane border = new BorderPane();
+		border.setLeft(new SetupField());
+		border.setRight(new ResourceBox());
 		
-		return sf;
+		Label header = new Label("Title");
+		StackPane headerPane = new StackPane();
+		headerPane.setStyle("-fx-border-color: black");
+		headerPane.getChildren().add(header);
+		border.setTop(headerPane);
+		
+		return border;
 	}
 	
 	public static void main(String[] args) {
