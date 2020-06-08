@@ -23,7 +23,6 @@ public class Main extends Application {
 		s.getStylesheets().add("BattleShip/Styles/MainMenu.css");
 		s.getStylesheets().add("BattleShip/Styles/Misc.css");
 		window.setTitle("Battle Ship");
-		window.setResizable(false);
 		
 		// Add main menu
 		window.setScene(s);

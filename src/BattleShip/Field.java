@@ -1,9 +1,9 @@
 package BattleShip;
 
 import javafx.scene.Group;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.FlowPane;
 
-public class Field extends StackPane {
+public class Field extends FlowPane {
 	public final static int TILE_SIZE = 50;
 	
 	// 10x10 board
@@ -14,6 +14,7 @@ public class Field extends StackPane {
 	
 	public Field() {
 		getChildren().add(tileGroup);
+		setStyle("-fx-border-color: black");
 		
 		for(int y = 0; y < HEIGHT; y++) {
 			for(int x = 0; x < WIDTH; x++) {
