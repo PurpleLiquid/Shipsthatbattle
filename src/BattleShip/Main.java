@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -20,8 +21,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage window) {
 		Scene s = new Scene(buildMainMenu(window));
-		s.getStylesheets().add("BattleShip/Styles/MainMenu.css");
-		s.getStylesheets().add("BattleShip/Styles/Misc.css");
+		s.getStylesheets().add("BattleShip/Styles/Buttons.css");
 		window.setTitle("Battle Ship");
 		
 		// Add main menu
@@ -30,12 +30,12 @@ public class Main extends Application {
 		window.show();
 	}
 	
-	private StackPane buildMainMenu(Stage window) {
-		StackPane mainMenu = new StackPane();
+	private Pane buildMainMenu(Stage window) {
+		Pane mainMenu = new Pane();
 		Group group = new Group();
 		
 		// Title Header
-		Text mainTitleHeader = new Text(0, 0, "BattleShip");
+		Text mainTitleHeader = new Text("BattleShip");
 		Font titleFont = Font.font("Verdana", FontWeight.BOLD, 30);
 		mainTitleHeader.setFont(titleFont);
 		mainTitleHeader.setWrappingWidth(200);
@@ -43,19 +43,20 @@ public class Main extends Application {
 		mainTitleHeader.setStroke(Color.DARKBLUE);
 		mainTitleHeader.setStrokeWidth(2);
 		mainTitleHeader.setLineSpacing(3);
+		mainTitleHeader.setLayoutY(30);
 		
 		// Play Button
 		Button playButton = new Button("Play");
-		playButton.getStyleClass().add("play-button");
-		playButton.setLayoutY(30);
+		playButton.getStyleClass().add("button");
+		playButton.setLayoutY(60);
 		
-		Scene setupScene = new Scene(buildSetupField(), 750, 750);
+		Scene setupScene = new Scene(buildSetupField());
 		playButton.setOnAction(e -> window.setScene(setupScene));
 		
 		// Exit Button
 		Button exitButton = new Button("Exit");
-		exitButton.getStyleClass().add("play-button");
-		exitButton.setLayoutY(80);
+		exitButton.getStyleClass().add("button");
+		exitButton.setLayoutY(110);
 		exitButton.setOnAction(e -> Platform.exit());
 		
 		// Adding all made components
@@ -72,12 +73,17 @@ public class Main extends Application {
 		BorderPane border = new BorderPane();
 		border.setLeft(new SetupField());
 		border.setRight(new ResourceBox());
+		border.getStylesheets().add("BattleShip/Styles/Buttons.css");
 		
 		Label header = new Label("Setup Ships");
 		StackPane headerPane = new StackPane();
 		headerPane.setStyle("-fx-border-color: black");
 		headerPane.getChildren().add(header);
 		border.setTop(headerPane);
+		
+		Button readyButton = new Button("Ready!");
+		readyButton.getStyleClass().add("button");
+		border.setBottom(readyButton);
 		
 		return border;
 	}

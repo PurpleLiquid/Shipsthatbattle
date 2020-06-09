@@ -1,7 +1,5 @@
 package BattleShip.Util;
 
-import java.util.ArrayList;
-
 import BattleShip.Ship;
 
 /**
@@ -9,7 +7,5 @@ import BattleShip.Ship;
  *
  */
 public abstract class Observer {
-	protected ArrayList<Ship> subjects = new ArrayList<Ship>();
-	
 	public abstract void update(Ship ship);
 }

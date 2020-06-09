@@ -12,6 +12,7 @@ public class ResourceBox extends FlowPane {
 	protected final int HEIGHT = 10;
 	protected final int WIDTH = 10;
 	
+	// Observer
 	ClickObserver selector = new ClickObserver();
 	
 	public ResourceBox() {
@@ -24,27 +25,27 @@ public class ResourceBox extends FlowPane {
 		getChildren().add(title);
 		
 		// Carrier
-		Ship carrier = new Ship(TILE_SIZE, 5, 0);
+		Ship carrier = new Ship("Carrier", TILE_SIZE, 5, 0);
 		carrier.attach(selector);
 		getChildren().add(carrier);
 		
 		// Battleship
-		Ship battleship = new Ship(TILE_SIZE, 4, 1);
+		Ship battleship = new Ship("Battleship", TILE_SIZE, 4, 1);
 		battleship.attach(selector);
 		getChildren().add(battleship);
 		
 		// Cruiser
-		Ship cruiser = new Ship(TILE_SIZE, 3, 2);
+		Ship cruiser = new Ship("Cruiser", TILE_SIZE, 3, 2);
 		cruiser.attach(selector);
 		getChildren().add(cruiser);
 		
 		// Submarine?
-		Ship sub = new Ship(TILE_SIZE, 3, 3);
+		Ship sub = new Ship("Submarine", TILE_SIZE, 3, 3);
 		sub.attach(selector);
 		getChildren().add(sub);
 		
 		// Destroyer
-		Ship destroyer = new Ship(TILE_SIZE, 2, 4);
+		Ship destroyer = new Ship("Destroyer", TILE_SIZE, 2, 4);
 		destroyer.attach(selector);
 		getChildren().add(destroyer);
 	}

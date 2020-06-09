@@ -35,10 +35,7 @@ public class ClickObserver extends Observer {
 		
 		// Update
 		this.previousShip = selectedShip;
-	}
-	
-	public void addShip(Ship ship) {
-		subjects.add(ship);
+		ShipSelector.getInstance().setSelected(selectedShip);
 	}
 	
 	public void setPreShip(Ship ship) {
