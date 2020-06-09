@@ -2,7 +2,6 @@ package BattleShip;
 
 import java.util.ArrayList;
 
-import BattleShip.Util.ClickObserver;
 import BattleShip.Util.Observer;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
@@ -19,9 +18,6 @@ public class Ship extends Group {
 			getChildren().add(tile);
 		}
 		
-		ClickObserver obs = new ClickObserver(this);
-		this.observers.add(obs);
-		
 		setOnMousePressed(e->{
 			notifyAllObservers();
 		});
@@ -33,7 +29,11 @@ public class Ship extends Group {
 	
 	public void notifyAllObservers() {
 		for(Observer observer : observers) {
-			observer.update();
+			observer.update(this);
 		}
 	}
+	
+//	public int getShipId() {
+//		return this.shipId;
+//	}
 }
