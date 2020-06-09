@@ -14,7 +14,7 @@ public class ResourceBox extends FlowPane {
 	public ResourceBox() {
 		setStyle("-fx-border-color: black");
 		setOrientation(Orientation.VERTICAL);
-		setVgap(15);
+		setVgap(20);
 		
 		// Title for the box
 		Label title = new Label("Available Ships");

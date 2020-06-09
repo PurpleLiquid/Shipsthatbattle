@@ -73,7 +73,7 @@ public class Main extends Application {
 		border.setLeft(new SetupField());
 		border.setRight(new ResourceBox());
 		
-		Label header = new Label("Title");
+		Label header = new Label("Setup Ships");
 		StackPane headerPane = new StackPane();
 		headerPane.setStyle("-fx-border-color: black");
 		headerPane.getChildren().add(header);
