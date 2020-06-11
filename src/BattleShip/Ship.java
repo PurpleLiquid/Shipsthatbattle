@@ -10,9 +10,12 @@ public class Ship extends Group {
 	// Should have ClickObserver and ShipSelector in observers list
 	private ArrayList<Observer> observers = new ArrayList<Observer>();
 	private String shipName;
+	private int shipSize;
+	public boolean isPlaced = false;
 	
 	public Ship(String shipName, double tileSize, int shipSize, int shipNum) {
 		this.shipName = shipName;
+		this.shipSize = shipSize;
 		
 		// Build Ship model
 		for(int x = 0; x < shipSize; x++) {
@@ -39,6 +42,10 @@ public class Ship extends Group {
 	// Might be useful later
 	public String getShipName() {
 		return this.shipName;
+	}
+	
+	public int getShipSize() {
+		return this.shipSize;
 	}
 	
 //	public int getShipId() {

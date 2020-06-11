@@ -2,20 +2,27 @@ package BattleShip.Util;
 
 import BattleShip.Ship;
 
-public class ShipSelector extends Observer {
+public class ShipSelector {
 	private Ship selectedShip;
-	
+	private static ShipSelector instance = null;
+
 	private ShipSelector() {
-		this.selectedShip = null;
+		selectedShip = null;
 	}
-	
+
+	public void setSelected(Ship ship) {
+		this.selectedShip = ship;
+	}
+
 	public Ship getSelected() {
 		return selectedShip;
 	}
 
-	@Override
-	public void update(Ship ship) {
-		this.selectedShip = ship;
-		
+	public static ShipSelector getInstance() {
+		if(instance == null) {
+			instance = new ShipSelector();
+		}
+
+		return instance;
 	} 
 }
