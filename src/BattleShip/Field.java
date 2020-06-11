@@ -18,7 +18,7 @@ public class Field extends FlowPane {
 		
 		for(int y = 0; y < HEIGHT; y++) {
 			for(int x = 0; x < WIDTH; x++) {
-				Tile tile = new Tile(x, y, TILE_SIZE);
+				InteractableTile tile = new InteractableTile(x, y, TILE_SIZE);
 				
 				tileGroup.getChildren().add(tile);
 			}

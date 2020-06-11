@@ -7,6 +7,7 @@ import javafx.scene.Group;
 import javafx.scene.paint.Color;
 
 public class Ship extends Group {
+	// Should have ClickObserver and ShipSelector in observers list
 	private ArrayList<Observer> observers = new ArrayList<Observer>();
 	private String shipName;
 	
@@ -15,8 +16,7 @@ public class Ship extends Group {
 		
 		// Build Ship model
 		for(int x = 0; x < shipSize; x++) {
-			Tile tile = new Tile(x, shipNum, tileSize);
-			tile.setFill(Color.BLUE);
+			ShipTile tile = new ShipTile(x, shipNum, tileSize);
 			
 			getChildren().add(tile);
 		}

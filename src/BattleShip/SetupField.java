@@ -1,7 +1,12 @@
 package BattleShip;
 
+import java.util.ArrayList;
+
+import BattleShip.Util.Observer;
+
 public class SetupField extends Field {
-	
+	// Should have ShipSelector in observers list
+	private ArrayList<Observer> observers = new ArrayList<Observer>();
 	
 	public SetupField() {
 		super(); // Build the tiles

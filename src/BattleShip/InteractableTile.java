@@ -3,9 +3,9 @@ package BattleShip;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-public class Tile extends Rectangle {
+public class InteractableTile extends Rectangle {
 	
-	public Tile(int x, int y, double tileSize) {
+	public InteractableTile(int x, int y, double tileSize) {
 		setFill(Color.LIGHTGREY);
 		setStroke(Color.BLACK);
 		

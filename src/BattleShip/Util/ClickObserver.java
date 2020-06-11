@@ -1,7 +1,7 @@
 package BattleShip.Util;
 
 import BattleShip.Ship;
-import BattleShip.Tile;
+import BattleShip.ShipTile;
 import javafx.scene.paint.Color;
 
 public class ClickObserver extends Observer {
@@ -20,7 +20,7 @@ public class ClickObserver extends Observer {
 			size = previousShip.getChildren().size();
 			
 			for(int i = 0; i < size; i++) {
-				Tile tile = (Tile) previousShip.getChildren().get(i);
+				ShipTile tile = (ShipTile) previousShip.getChildren().get(i);
 				tile.setStroke(Color.BLACK);
 			}
 		}
@@ -29,13 +29,12 @@ public class ClickObserver extends Observer {
 		size = selectedShip.getChildren().size();
 		
 		for(int i = 0; i < size; i++) {
-			Tile tile = (Tile) selectedShip.getChildren().get(i);
+			ShipTile tile = (ShipTile) selectedShip.getChildren().get(i);
 			tile.setStroke(Color.YELLOW);
 		}
 		
 		// Update
 		this.previousShip = selectedShip;
-		ShipSelector.getInstance().setSelected(selectedShip);
 	}
 	
 	public void setPreShip(Ship ship) {
