@@ -2,6 +2,7 @@ package BattleShip;
 
 import BattleShip.Util.ClickObserver;
 import javafx.geometry.Orientation;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 
@@ -17,6 +18,7 @@ public class ResourceBox extends FlowPane {
 	
 	public ResourceBox() {
 		setStyle("-fx-border-color: black");
+		getStylesheets().add("BattleShip/Styles/Buttons.css");
 		setOrientation(Orientation.VERTICAL);
 		setVgap(20);
 		
@@ -48,5 +50,11 @@ public class ResourceBox extends FlowPane {
 		Ship destroyer = new Ship("Destroyer", TILE_SIZE, 2, 4);
 		destroyer.attach(selector);
 		getChildren().add(destroyer);
+		
+		// For later use
+		// Rotate orientation of ships
+		Button rotationButton = new Button();
+		rotationButton.getStyleClass().add("arrow-button");
+		getChildren().add(rotationButton);
 	}
 }
