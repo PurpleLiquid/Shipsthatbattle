@@ -6,8 +6,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
 public class SetupField extends Field {
-	private int prevX, prevY;
-	
 	public SetupField() {
 		super(); 
 		
@@ -21,16 +19,16 @@ public class SetupField extends Field {
 	            int originY = tile.getPlacementY();
 	            
 	            // Clean up previous placement
-	            if(ship.isPlaced) {
-	            	InteractableTile prevOrigin = (InteractableTile) tileGroup.getChildren().get((prevY*10) + prevX);
+	            if(ship.isPlaced && ship.getShipName() == ShipSelector.getInstance().getSelected().getShipName()) {
+	            	InteractableTile prevOrigin = (InteractableTile) tileGroup.getChildren().get((ship.getOriginY()*10) + ship.getOriginX());
 	            	
 	            	for(int i = 1; i < ship.getShipSize(); i++) {
 	            		prevOrigin.setFill(Color.LIGHTGREY);
-	            		if(prevX <= 5) {
-	            			int incIndex = ((prevY*10) + prevX) + i;
+	            		if(ship.getOriginX() <= 5) {
+	            			int incIndex = ((ship.getOriginY()*10) + ship.getOriginX()) + i;
 	            			prevOrigin = (InteractableTile) tileGroup.getChildren().get(incIndex);
 	            		} else {
-	            			int decIndex = ((prevY*10) + prevX) - i;
+	            			int decIndex = ((ship.getOriginY()*10) + ship.getOriginX()) - i;
 	            			prevOrigin = (InteractableTile) tileGroup.getChildren().get(decIndex);
 	            		}
 	            	}
@@ -53,15 +51,20 @@ public class SetupField extends Field {
 	            		}
 	            	}
 	            	
+	            	
+	            	// Set new placement
+	            	ship.setOriginX(originX);
+		            ship.setOriginY(originY);
 	            	ship.isPlaced = true;
-	            	tile.setFill(Color.BLUE); // For last tile
+	            	
+	            	// For last tile
+	            	tile.setFill(Color.BLUE);
 	            }
 	            
-	            prevX = originX;
-	            prevY = originY;
 	         } 
 		};
 		
+		// Place Tiles
 		for(int y = 0; y < HEIGHT; y++) {
 			for(int x = 0; x < WIDTH; x++) {
 				InteractableTile tile = new InteractableTile(x, y, TILE_SIZE);

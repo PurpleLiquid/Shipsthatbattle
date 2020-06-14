@@ -11,7 +11,7 @@ public class ShipSelector {
 	}
 
 	public void setSelected(Ship ship) {
-		this.selectedShip = ship;
+		selectedShip = ship;
 	}
 
 	public Ship getSelected() {

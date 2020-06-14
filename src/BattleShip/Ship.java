@@ -12,6 +12,7 @@ public class Ship extends Group {
 	private String shipName;
 	private int shipSize;
 	public boolean isPlaced = false;
+	private int originX, originY;
 	
 	public Ship(String shipName, double tileSize, int shipSize, int shipNum) {
 		this.shipName = shipName;
@@ -27,6 +28,22 @@ public class Ship extends Group {
 		setOnMousePressed(e->{
 			notifyAllObservers();
 		});
+	}
+	
+	public void setOriginX(int x) {
+		originX = x;
+	}
+	
+	public void setOriginY(int y) {
+		originY = y;
+	}
+	
+	public int getOriginX() {
+		return originX;
+	}
+	
+	public int getOriginY() {
+		return originY;
 	}
 	
 	public void attach(Observer observer) {

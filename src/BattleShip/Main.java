@@ -2,6 +2,7 @@ package BattleShip;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -49,8 +50,7 @@ public class Main extends Application {
 		Button playButton = new Button("Play");
 		playButton.getStyleClass().add("button");
 		playButton.setLayoutY(60);
-		
-		Scene setupScene = new Scene(buildSetupField());
+		Scene setupScene = new Scene(buildSetupField(window));
 		playButton.setOnAction(e -> window.setScene(setupScene));
 		
 		// Exit Button
@@ -69,7 +69,7 @@ public class Main extends Application {
 		return mainMenu;
 	}
 	
-	private BorderPane buildSetupField() {
+	private BorderPane buildSetupField(Stage window) {
 		BorderPane border = new BorderPane();
 		border.setLeft(new SetupField());
 		border.setRight(new ResourceBox());
@@ -83,7 +83,27 @@ public class Main extends Application {
 		
 		Button readyButton = new Button("Ready!");
 		readyButton.getStyleClass().add("button");
+		Scene battleScene = new Scene(buildBattleField());
+		readyButton.setOnAction(e -> window.setScene(battleScene));
 		border.setBottom(readyButton);
+		
+		return border;
+	}
+	
+	private BorderPane buildBattleField() {
+		BorderPane border = new BorderPane();
+		border.setCenter(new Battlefield());
+		border.getStylesheets().add("BattleShip/Styles/Buttons.css");
+		
+		Label header = new Label("Battle");
+		StackPane headerPane = new StackPane();
+		headerPane.setStyle("-fx-border-color: black");
+		headerPane.getChildren().add(header);
+		border.setTop(headerPane);
+		
+		Button turnButton = new Button("End Turn");
+		turnButton.getStyleClass().add("button");
+		border.setBottom(turnButton);
 		
 		return border;
 	}
