@@ -6,8 +6,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
 public class SetupField extends Field {
-	public SetupField() {
-		super(); 
+
+	public SetupField(Color playerColor) {
+		super(playerColor);
 		
 		// For ship placement
 		EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
@@ -17,6 +18,10 @@ public class SetupField extends Field {
 	            Ship ship = ShipSelector.getInstance().getSelected();
 	            int originX = tile.getPlacementX();
 	            int originY = tile.getPlacementY();
+	            
+	            if(ship == null) {
+	            	return;
+	            }
 	            
 	            // Clean up previous placement
 	            if(ship.isPlaced && ship.getShipName() == ShipSelector.getInstance().getSelected().getShipName()) {
@@ -41,7 +46,7 @@ public class SetupField extends Field {
 	            if(ship != null && ship.isPlaced == false) {
 	            	
 	            	for(int i = 1; i < ship.getShipSize(); i++) {
-	            		tile.setFill(Color.BLUE);
+	            		tile.setFill(playerColor);
 	            		if(originX <= 5) {
 	            			int incIndex = ((originY*10) + originX) + i;
 	            			tile = (InteractableTile) tileGroup.getChildren().get(incIndex);
@@ -58,7 +63,7 @@ public class SetupField extends Field {
 	            	ship.isPlaced = true;
 	            	
 	            	// For last tile
-	            	tile.setFill(Color.BLUE);
+	            	tile.setFill(playerColor);
 	            }
 	            
 	         } 
@@ -74,4 +79,5 @@ public class SetupField extends Field {
 			}
 		}
 	}
+	
 }

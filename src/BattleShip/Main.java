@@ -1,5 +1,6 @@
 package BattleShip;
 
+import BattleShip.Util.Player;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
@@ -19,6 +20,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+	private Player player1 = new Player(Color.BLUE);
+	private Player player2 = new Player(Color.RED);
+	
 	@Override
 	public void start(Stage window) {
 		Scene s = new Scene(buildMainMenu(window));
@@ -71,7 +75,7 @@ public class Main extends Application {
 	
 	private BorderPane buildSetupField(Stage window) {
 		BorderPane border = new BorderPane();
-		border.setLeft(new SetupField());
+		border.setLeft(player1.getField());
 		border.setRight(new ResourceBox());
 		border.getStylesheets().add("BattleShip/Styles/Buttons.css");
 		
@@ -92,7 +96,7 @@ public class Main extends Application {
 	
 	private BorderPane buildBattleField() {
 		BorderPane border = new BorderPane();
-		border.setCenter(new Battlefield());
+		border.setCenter(player1.getField());
 		border.getStylesheets().add("BattleShip/Styles/Buttons.css");
 		
 		Label header = new Label("Battle");

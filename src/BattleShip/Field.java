@@ -2,6 +2,7 @@ package BattleShip;
 
 import javafx.scene.Group;
 import javafx.scene.Parent;
+import javafx.scene.paint.Color;
 
 public class Field extends Parent {
 	public final static int TILE_SIZE = 50;
@@ -12,7 +13,7 @@ public class Field extends Parent {
 	
 	protected Group tileGroup = new Group();
 	
-	public Field() {
+	public Field(Color playerColor) {
 		getChildren().add(tileGroup);
 		setStyle("-fx-border-color: black");
 	}
