@@ -75,7 +75,7 @@ public class Main extends Application {
 	
 	private BorderPane buildSetupField(Stage window) {
 		BorderPane border = new BorderPane();
-		border.setLeft(player1.getField());
+		border.setLeft(player1.getSetupField());
 		border.setRight(new ResourceBox());
 		border.getStylesheets().add("BattleShip/Styles/Buttons.css");
 		
@@ -96,7 +96,7 @@ public class Main extends Application {
 	
 	private BorderPane buildBattleField() {
 		BorderPane border = new BorderPane();
-		border.setCenter(player1.getField());
+		border.setCenter(player1.getBattleField());
 		border.getStylesheets().add("BattleShip/Styles/Buttons.css");
 		
 		Label header = new Label("Battle");

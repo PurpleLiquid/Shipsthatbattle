@@ -1,23 +1,38 @@
 package BattleShip.Util;
 
+import BattleShip.BattleField;
 import BattleShip.Field;
 import BattleShip.SetupField;
 import javafx.scene.paint.Color;
 
 public class Player {
-	private SetupField playerField;
+	private SetupField setupField;
+	private BattleField battleField;
 	private Color playerColor;
 	
 	public Player(Color playerColor) {
 		this.playerColor = playerColor;
-		playerField = new SetupField(playerColor);
+		setupField = new SetupField(playerColor);
 	}
 	
 	public Color getPlayerColor() {
 		return this.playerColor;
 	}
 	
-	public Field getField() {
-		return this.playerField;
+	public Field getSetupField() {
+		return this.setupField;
+	}
+	
+	public Field getBattleField() {
+		if(battleField == null) {
+			battleField = new BattleField(playerColor);
+			battleField.setCarrier(setupField.getCarrier());
+			battleField.setBattleship(setupField.getBattleship());
+			battleField.setCruiser(setupField.getCruiser());
+			battleField.setSubmarine(setupField.getSubmarine());
+			battleField.setDestroyer(setupField.getDestroyer());
+		}
+		
+		return battleField;
 	}
 }
