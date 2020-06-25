@@ -2,9 +2,9 @@ package BattleShip;
 
 import javafx.scene.paint.Color;
 
-public class BattleField extends Field {
+public class Battlefield extends Field {
 
-	public BattleField(Color playerColor) {
+	public Battlefield(Color playerColor) {
 		super(playerColor);
 		
 		
