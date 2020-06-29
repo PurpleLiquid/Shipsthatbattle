@@ -1,14 +1,27 @@
 package BattleShip;
 
+import java.util.ArrayList;
+
 import BattleShip.Util.ShipSelector;
 import javafx.event.EventHandler;
+import javafx.scene.Group;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
-public class SetupField extends Field {
+public class SetupField extends Pane {
+	// 10x10 board
+	private final int HEIGHT = 10;
+	private final int WIDTH = 10;
+	public final static int TILE_SIZE = 50;
+	
+	private Group tileGroup = new Group();
+	
+	private ArrayList<Ship> shipList = new ArrayList<Ship>();
 
 	public SetupField(Color playerColor) {
-		super(playerColor);
+		getChildren().add(tileGroup);
+		setStyle("-fx-border-color: black");
 		
 		// For ship placement
 		EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
@@ -64,6 +77,17 @@ public class SetupField extends Field {
 	            	
 	            	// For last tile
 	            	tile.setFill(playerColor);
+	            	
+	            	// Check if ship was already set and update
+	            	for(int i = 0; i < shipList.size(); i++) {
+	            		if(ship.getShipName() == shipList.get(i).getShipName()) {
+	            			shipList.set(i, ship);
+	            			return;
+	            		}
+	            	}
+	            	
+	            	// if it doesn't exist yet
+	            	addShip(ship);
 	            }
 	            
 	         } 
@@ -80,4 +104,15 @@ public class SetupField extends Field {
 		}
 	}
 	
+	public void addShip(Ship ship) {
+		shipList.add(ship);
+	}
+	
+	public void setShips(ArrayList<Ship> ships) {
+		shipList = ships;
+	}
+	
+	public ArrayList<Ship> getShips() {
+		return shipList;
+	}
 }

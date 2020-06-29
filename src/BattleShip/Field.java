@@ -6,11 +6,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
 public class Field extends Pane {
-	public final static int TILE_SIZE = 50;
-	
 	// 10x10 board
 	protected final int HEIGHT = 10;
 	protected final int WIDTH = 10;
+	public final static int TILE_SIZE = 50;
 	
 	protected Group tileGroup = new Group();
 	

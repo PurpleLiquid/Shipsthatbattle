@@ -56,7 +56,6 @@ public class Ship extends Group {
 		}
 	}
 	
-	// Might be useful later
 	public String getShipName() {
 		return this.shipName;
 	}
