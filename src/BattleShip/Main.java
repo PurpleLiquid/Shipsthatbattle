@@ -1,13 +1,16 @@
 package BattleShip;
 
+import BattleShip.Exceptions.InvalidShipAmount;
 import BattleShip.Util.Player;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -88,7 +91,24 @@ public class Main extends Application {
 		Button readyButton = new Button("Ready!");
 		readyButton.getStyleClass().add("button");
 		Scene battleScene = new Scene(buildBattleField());
-		readyButton.setOnAction(e -> window.setScene(battleScene));
+		
+		EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent arg0) {
+				if(player1.getSetupField().getShips().size() == 5) {
+					try {
+						player1.getBattleField().setShips(player1.getSetupField().getShips());
+					} catch (InvalidShipAmount e) {
+						e.printStackTrace();
+					};
+					
+					window.setScene(battleScene);
+				}
+			} 
+		};
+		
+		readyButton.setOnMouseClicked(eventHandler);
+		
 		border.setBottom(readyButton);
 		
 		return border;

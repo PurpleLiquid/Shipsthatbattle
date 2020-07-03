@@ -1,7 +1,6 @@
 package BattleShip.Util;
 
 import BattleShip.BattleField;
-import BattleShip.Field;
 import BattleShip.SetupField;
 import javafx.scene.paint.Color;
 
@@ -23,7 +22,7 @@ public class Player {
 		return this.setupField;
 	}
 	
-	public Field getBattleField() {
+	public BattleField getBattleField() {
 		if(battleField == null) {
 			battleField = new BattleField(playerColor);
 		}
