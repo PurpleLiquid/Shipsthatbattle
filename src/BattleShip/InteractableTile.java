@@ -28,7 +28,7 @@ public class InteractableTile extends Rectangle {
 		return this.y;
 	}
 	
-	public void containShip(boolean isShipTile) {
+	public void isShipTile(boolean isShipTile) {
 		this.isShipTile = isShipTile;
 	}
 	
