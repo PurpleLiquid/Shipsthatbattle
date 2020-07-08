@@ -3,7 +3,10 @@ package BattleShip;
 import java.util.ArrayList;
 
 import BattleShip.Exceptions.InvalidShipAmount;
+import BattleShip.Util.ShipSelector;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
@@ -23,12 +26,33 @@ public class BattleField extends Pane {
 		setStyle("-fx-border-color: black");
 		this.playerColor = playerColor;
 		
+		// For "attacking" tiles
+		EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
+			 @Override 
+	         public void handle(MouseEvent e) { 
+				 InteractableTile tile = (InteractableTile) e.getSource();
+				 
+				 if(tile.isAlive()) {
+					 // Marking whether tile has enemy ship or not
+					 if(playerColor == Color.BLUE && tile.hasShip()) { // Player 1 hit
+						 tile.setFill(Color.RED);
+					 } else if(playerColor == Color.RED && tile.hasShip()) { // Player 2 hit
+						 tile.setFill(Color.BLUE);
+					 } else { // Miss
+						 tile.setFill(Color.BLACK);
+					 }
+					 
+					 tile.kill();
+				 }
+	         } 
+		};
+		
 		// Place Tiles
 		for(int y = 0; y < HEIGHT; y++) {
 			for(int x = 0; x < WIDTH; x++) {
 				InteractableTile tile = new InteractableTile(x, y, TILE_SIZE);
-				//tile.setOnMouseClicked(eventHandler);
 				
+				tile.setOnMouseClicked(eventHandler);
 				tileGroup.getChildren().add(tile);
 			}
 		}
@@ -48,6 +72,8 @@ public class BattleField extends Pane {
 			
 			for(int j = 1; j < ship.getShipSize(); j++) {
         		tile.setFill(playerColor);
+        		tile.isShipTile(true);
+        		
         		if(ship.getOriginX() <= 5) {
         			int incIndex = ((ship.getOriginY()*10) + ship.getOriginX()) + j;
         			tile = (InteractableTile) tileGroup.getChildren().get(incIndex);
@@ -59,6 +85,7 @@ public class BattleField extends Pane {
 			
 			// For last tile
 			tile.setFill(playerColor);
+			tile.isShipTile(true);
 		}
 	}
 }

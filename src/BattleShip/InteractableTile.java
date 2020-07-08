@@ -6,6 +6,7 @@ import javafx.scene.shape.Rectangle;
 public class InteractableTile extends Rectangle {
 	// Rectangle already has an x and y but I need this for board placement
 	private int x, y;
+	private boolean alive = true;
 	private boolean isShipTile = false;
 	
 	public InteractableTile(int x, int y, double tileSize) {
@@ -34,5 +35,14 @@ public class InteractableTile extends Rectangle {
 	
 	public boolean hasShip() {
 		return isShipTile;
+	}
+	
+	// For battlefield use
+	public boolean isAlive() {
+		return alive;
+	}
+	
+	public void kill() {
+		alive = false;
 	}
 }

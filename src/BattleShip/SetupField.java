@@ -60,6 +60,7 @@ public class SetupField extends Pane {
 	            	
 	            	for(int i = 1; i < ship.getShipSize(); i++) {
 	            		tile.setFill(playerColor);
+	            		
 	            		if(originX <= 5) {
 	            			int incIndex = ((originY*10) + originX) + i;
 	            			tile = (InteractableTile) tileGroup.getChildren().get(incIndex);
