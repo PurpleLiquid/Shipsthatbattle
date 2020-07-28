@@ -71,7 +71,6 @@ public class BattleField extends Pane {
 			InteractableTile tile = (InteractableTile) tileGroup.getChildren().get((ship.getOriginY()*10) + ship.getOriginX());
 			
 			for(int j = 1; j < ship.getShipSize(); j++) {
-        		tile.setFill(playerColor);
         		tile.isShipTile(true);
         		
         		if(ship.getOriginX() <= 5) {
@@ -84,7 +83,6 @@ public class BattleField extends Pane {
         	}
 			
 			// For last tile
-			tile.setFill(playerColor);
 			tile.isShipTile(true);
 		}
 	}

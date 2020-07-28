@@ -5,6 +5,7 @@ import BattleShip.Util.Player;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -12,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -116,11 +118,23 @@ public class Main extends Application {
 	
 	private BorderPane buildBattleField() {
 		BorderPane border = new BorderPane();
-		border.setCenter(player1.getBattleField());
+		FlowPane leftPane = new FlowPane();
+		FlowPane rightPane = new FlowPane();
+		
+		Label leftLabel = new Label("You");
+		leftPane.getChildren().add(leftLabel);
+		leftPane.getChildren().add(player1.getBattleField());
+		border.setLeft(leftPane);
+		
+		Label rightLabel = new Label("Opponent");
+		rightPane.getChildren().add(rightLabel);
+		rightPane.getChildren().add(player2.getBattleField());
+		border.setRight(rightPane);
+		
 		border.getStylesheets().add("BattleShip/Styles/Buttons.css");
 		
-		Label header = new Label("Battle");
-		StackPane headerPane = new StackPane();
+		Label header = new Label("Battle Field");
+		FlowPane headerPane = new FlowPane();
 		headerPane.setStyle("-fx-border-color: black");
 		headerPane.getChildren().add(header);
 		border.setTop(headerPane);
@@ -128,6 +142,10 @@ public class Main extends Application {
 		Button turnButton = new Button("End Turn");
 		turnButton.getStyleClass().add("button");
 		border.setBottom(turnButton);
+		
+		// Filler
+		Label filler = new Label("      ");
+		border.setCenter(filler);
 		
 		return border;
 	}
