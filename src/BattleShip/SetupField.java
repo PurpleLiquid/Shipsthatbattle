@@ -70,8 +70,6 @@ public class SetupField extends Pane {
 	            		}
 	            	}
 	            	
-	            	
-	            	// Set new placement
 	            	ship.setOriginX(originX);
 		            ship.setOriginY(originY);
 	            	ship.isPlaced = true;

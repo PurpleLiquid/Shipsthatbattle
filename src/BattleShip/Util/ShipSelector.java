@@ -4,6 +4,7 @@ import BattleShip.Ship;
 
 public class ShipSelector {
 	private Ship selectedShip;
+	private boolean horizontal = true;
 	private static ShipSelector instance = null;
 
 	private ShipSelector() {
@@ -16,6 +17,14 @@ public class ShipSelector {
 
 	public Ship getSelected() {
 		return selectedShip;
+	}
+	
+	public void setHorizontal(boolean isHorizontal) {
+		this.horizontal = isHorizontal;
+	}
+	
+	public boolean isHorizontal() {
+		return horizontal;
 	}
 
 	public static ShipSelector getInstance() {

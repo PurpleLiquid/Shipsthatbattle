@@ -1,9 +1,12 @@
 package BattleShip;
 
 import BattleShip.Util.ClickObserver;
+import BattleShip.Util.ShipSelector;
+import javafx.event.EventHandler;
 import javafx.geometry.Orientation;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 
 public class ResourceBox extends FlowPane {
@@ -14,7 +17,9 @@ public class ResourceBox extends FlowPane {
 	protected final int WIDTH = 10;
 	
 	// Observer
-	ClickObserver selector = new ClickObserver();
+	private ClickObserver selector = new ClickObserver();
+	
+	private boolean horizontal = true;
 	
 	public ResourceBox() {
 		setStyle("-fx-border-color: black");
@@ -51,10 +56,29 @@ public class ResourceBox extends FlowPane {
 		destroyer.attach(selector);
 		getChildren().add(destroyer);
 		
-		// For later use
 		// Rotate orientation of ships
+		Label orientationLabel = new Label("Horizontal");
+		getChildren().add(orientationLabel);
+		
+		EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent arg0) {
+				horizontal = !horizontal;
+				
+				if(horizontal) {
+					orientationLabel.setText("Horizontal");
+				} else {
+					orientationLabel.setText("Vertical");
+				}
+				
+				ShipSelector.getInstance().setHorizontal(horizontal);
+			}
+		};
+		
 		Button rotationButton = new Button();
 		rotationButton.getStyleClass().add("arrow-button");
+		rotationButton.setOnMouseClicked(eventHandler);
 		getChildren().add(rotationButton);
 	}
 }

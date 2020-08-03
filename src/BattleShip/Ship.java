@@ -13,6 +13,7 @@ public class Ship extends Group {
 	private int shipSize;
 	public boolean isPlaced = false;
 	private int originX, originY;
+	private boolean horizontal = true;
 	
 	public Ship(String shipName, double tileSize, int shipSize, int shipNum) {
 		this.shipName = shipName;
@@ -44,6 +45,16 @@ public class Ship extends Group {
 	
 	public int getOriginY() {
 		return originY;
+	}
+	
+	public void setHorizontal(boolean isHorizontal)
+	{
+		horizontal = isHorizontal;
+	}
+	
+	public boolean isHorizontal()
+	{
+		return horizontal;
 	}
 	
 	public void attach(Observer observer) {

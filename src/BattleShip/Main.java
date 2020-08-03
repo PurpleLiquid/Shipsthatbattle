@@ -33,6 +33,7 @@ public class Main extends Application {
 		Scene s = new Scene(buildMainMenu(window));
 		s.getStylesheets().add("BattleShip/Styles/Buttons.css");
 		window.setTitle("Battle Ship");
+		window.setResizable(false);; 
 		
 		// Add main menu
 		window.setScene(s);
