@@ -29,6 +29,7 @@ public class SetupField extends Pane {
 	         public void handle(MouseEvent e) { 
 	            InteractableTile tile = (InteractableTile) e.getSource();
 	            Ship ship = ShipSelector.getInstance().getSelected();
+	            boolean horizontal = ShipSelector.getInstance().isHorizontal();
 	            int originX = tile.getPlacementX();
 	            int originY = tile.getPlacementY();
 	            
@@ -38,17 +39,32 @@ public class SetupField extends Pane {
 	            
 	            // Clean up previous placement
 	            if(ship.isPlaced && ship.getShipName() == ShipSelector.getInstance().getSelected().getShipName()) {
+	            	// All ship variables should have been saved from previous
 	            	InteractableTile prevOrigin = (InteractableTile) tileGroup.getChildren().get((ship.getOriginY()*10) + ship.getOriginX());
 	            	
-	            	for(int i = 1; i < ship.getShipSize(); i++) {
-	            		prevOrigin.setFill(Color.LIGHTGREY);
-	            		if(ship.getOriginX() <= 5) {
-	            			int incIndex = ((ship.getOriginY()*10) + ship.getOriginX()) + i;
-	            			prevOrigin = (InteractableTile) tileGroup.getChildren().get(incIndex);
-	            		} else {
-	            			int decIndex = ((ship.getOriginY()*10) + ship.getOriginX()) - i;
-	            			prevOrigin = (InteractableTile) tileGroup.getChildren().get(decIndex);
-	            		}
+	            	if(ship.isHorizontal()) { // Horizontal
+		            	for(int i = 1; i < ship.getShipSize(); i++) {
+		            		prevOrigin.setFill(Color.LIGHTGREY);
+		            		if(ship.getOriginX() <= 5) {
+		            			int incIndex = ((ship.getOriginY()*10) + ship.getOriginX()) + i;
+		            			prevOrigin = (InteractableTile) tileGroup.getChildren().get(incIndex);
+		            		} else {
+		            			int decIndex = ((ship.getOriginY()*10) + ship.getOriginX()) - i;
+		            			prevOrigin = (InteractableTile) tileGroup.getChildren().get(decIndex);
+		            		}
+		            	}
+	            	} else { // Vertical
+	            		for(int i = 0; i < ship.getShipSize(); i++) {
+	            			prevOrigin.setFill(Color.LIGHTGREY);
+		            		
+		            		if(originY <= 5) {
+		            			int incIndex = ((ship.getOriginY()*10) + (i * 10)) + ship.getOriginX();
+		            			prevOrigin = (InteractableTile) tileGroup.getChildren().get(incIndex);
+		            		} else {
+		            			int decIndex = ((ship.getOriginY()*10) - (i * 10)) + ship.getOriginX();
+		            			prevOrigin = (InteractableTile) tileGroup.getChildren().get(decIndex);
+		            		}
+		            	}
 	            	}
 	            	
 	            	prevOrigin.setFill(Color.LIGHTGREY); // For last tile
@@ -56,7 +72,7 @@ public class SetupField extends Pane {
 	            }
 	            
 	            // Place Horizontal
-	            if(ship != null && ship.isPlaced == false) {
+	            if(ship != null && ship.isPlaced == false && horizontal) {
 	            	
 	            	for(int i = 1; i < ship.getShipSize(); i++) {
 	            		tile.setFill(playerColor);
@@ -88,7 +104,41 @@ public class SetupField extends Pane {
 	            	// if it doesn't exist yet
 	            	addShip(ship);
 	            }
-	            
+	            // Place Vertical
+	            else if(ship != null && ship.isPlaced == false && horizontal == false) {
+	            	
+	            	for(int i = 0; i < ship.getShipSize(); i++) {
+	            		tile.setFill(playerColor);
+	            		
+	            		if(originY <= 5) {
+	            			int incIndex = ((originY*10) + (i * 10)) + originX;
+	            			tile = (InteractableTile) tileGroup.getChildren().get(incIndex);
+	            		} else {
+	            			int decIndex = ((originY*10) - (i * 10)) + originX;
+	            			tile = (InteractableTile) tileGroup.getChildren().get(decIndex);
+	            		}
+	            	}
+	            	
+	            	// For last tile
+	            	tile.setFill(playerColor);
+	            	
+	            	// Setting variables
+	            	ship.setOriginX(originX);
+		            ship.setOriginY(originY);
+	            	ship.isPlaced = true;
+	            	ship.setHorizontal(horizontal);
+	            	
+	            	// Check if ship was already set and update
+	            	for(int i = 0; i < shipList.size(); i++) {
+	            		if(ship.getShipName() == shipList.get(i).getShipName()) {
+	            			shipList.set(i, ship);
+	            			return;
+	            		}
+	            	}
+	            	
+	            	// if it doesn't exist yet
+	            	addShip(ship);
+	            } 
 	         } 
 		};
 		
