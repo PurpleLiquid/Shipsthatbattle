@@ -44,7 +44,7 @@ public class SetupField extends Pane {
 	            
 	            // Place Horizontal
 	            if(ship != null && ship.isPlaced == false && horizontal) {
-	            	placeShipHorizontal(ship, tile, playerColor, originX, originY);
+	            	placeShipHorizontal(ship, tile, playerColor, originX, originY, horizontal);
 	            	updateList(ship);
 	            }
 	            // Place Vertical
@@ -103,7 +103,7 @@ public class SetupField extends Pane {
     	ship.isPlaced = false;
 	}
 	
-	private void placeShipHorizontal(Ship ship, InteractableTile tile, Color playerColor, int X, int Y) {
+	private void placeShipHorizontal(Ship ship, InteractableTile tile, Color playerColor, int X, int Y, boolean horizontal) {
 		for(int i = 1; i < ship.getShipSize(); i++) {
     		tile.setFill(playerColor);
     		
@@ -123,6 +123,7 @@ public class SetupField extends Pane {
     	ship.setOriginX(X);
         ship.setOriginY(Y);
     	ship.isPlaced = true;
+    	ship.setHorizontal(horizontal);
 	}
 	
 	private void placeShipVertical(Ship ship, InteractableTile tile, Color playerColor, int X, int Y, boolean horizontal) {
