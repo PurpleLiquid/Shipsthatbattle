@@ -70,20 +70,38 @@ public class BattleField extends Pane {
 			Ship ship = shipList.get(i);
 			InteractableTile tile = (InteractableTile) tileGroup.getChildren().get((ship.getOriginY()*10) + ship.getOriginX());
 			
-			for(int j = 1; j < ship.getShipSize(); j++) {
-        		tile.isShipTile(true);
-        		
-        		if(ship.getOriginX() <= 5) {
-        			int incIndex = ((ship.getOriginY()*10) + ship.getOriginX()) + j;
-        			tile = (InteractableTile) tileGroup.getChildren().get(incIndex);
-        		} else {
-        			int decIndex = ((ship.getOriginY()*10) + ship.getOriginX()) - j;
-        			tile = (InteractableTile) tileGroup.getChildren().get(decIndex);
-        		}
-        	}
-			
-			// For last tile
-			tile.isShipTile(true);
+			if(ship.isHorizontal()) { // Horizontal placement
+				for(int j = 1; j < ship.getShipSize(); j++) {
+	        		tile.isShipTile(true);
+	        		
+	        		if(ship.getOriginX() <= 5) {
+	        			int incIndex = ((ship.getOriginY()*10) + ship.getOriginX()) + j;
+	        			tile = (InteractableTile) tileGroup.getChildren().get(incIndex);
+	        		} else {
+	        			int decIndex = ((ship.getOriginY()*10) + ship.getOriginX()) - j;
+	        			tile = (InteractableTile) tileGroup.getChildren().get(decIndex);
+	        		}
+	        	}
+				
+				// For last tile
+				tile.isShipTile(true);
+				
+			} else { // Vertical placement
+				for(int j = 1; j < ship.getShipSize(); j++) {
+					tile.isShipTile(true);
+		    		
+		    		if(ship.getOriginY() <= 5) {
+		    			int incIndex = ((ship.getOriginY()*10) + (j * 10)) + ship.getOriginX();
+		    			tile = (InteractableTile) tileGroup.getChildren().get(incIndex);
+		    		} else {
+		    			int decIndex = ((ship.getOriginY()*10) - (j * 10)) + ship.getOriginX();
+		    			tile = (InteractableTile) tileGroup.getChildren().get(decIndex);
+		    		}
+		    	}
+		    	
+		    	// For last tile
+				tile.isShipTile(true);
+			}
 		}
 	}
 }
