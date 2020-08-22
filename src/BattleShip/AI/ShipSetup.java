@@ -1,5 +1,7 @@
 package BattleShip.AI;
 
+import java.util.ArrayList;
+
 import BattleShip.Ship;
 
 /*
@@ -20,10 +22,26 @@ public class ShipSetup {
 		cruiser = new Ship("Cruiser", TILE_SIZE, 3, 2);
 		sub = new Ship("Submarine", TILE_SIZE, 3, 3);
 		destroyer = new Ship("Destroyer", TILE_SIZE, 2, 4);
+		
+		placeShips();
 	}
 	
 	public ArrayList<Ship> getShips() {
+		ArrayList<Ship> ships = new ArrayList<Ship>();
 		
-		return null;
+		ships.add(carrier);
+		ships.add(battleship);
+		ships.add(cruiser);
+		ships.add(sub);
+		ships.add(destroyer);
+		
+		return ships;
+	}
+	
+	private void placeShips()
+	{
+		// This is meant to just set ship's origin x and y placement
+		// As well as whether they will be vertical or horizontal
+		
 	}
 }
