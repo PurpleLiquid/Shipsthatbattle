@@ -43,5 +43,26 @@ public class ShipSetup {
 		// This is meant to just set ship's origin x and y placement
 		// As well as whether they will be vertical or horizontal
 		
+		// Carrier
+		carrier.setOriginX(2);
+		carrier.setOriginY(0);
+		
+		// Battleship
+		battleship.setOriginX(9);
+		battleship.setOriginY(2);
+		
+		// cruiser
+		cruiser.setOriginX(3);
+		cruiser.setOriginY(3);
+		cruiser.setHorizontal(true);
+		
+		// sub
+		sub.setOriginX(5);
+		sub.setOriginY(3);
+		sub.setHorizontal(true);
+		
+		// destroyer
+		destroyer.setOriginX(8);
+		destroyer.setOriginY(2);
 	}
 }
