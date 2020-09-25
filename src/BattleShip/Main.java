@@ -1,12 +1,11 @@
 package BattleShip;
 
+import BattleShip.AI.PlayerBot;
 import BattleShip.Exceptions.InvalidShipAmount;
 import BattleShip.Util.Player;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
-import javafx.geometry.Orientation;
-import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,10 +13,8 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -26,7 +23,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 	private Player player1 = new Player(Color.BLUE);
-	private Player player2 = new Player(Color.RED);
+	private Player player2 = new PlayerBot(Color.RED);
 	
 	@Override
 	public void start(Stage window) {

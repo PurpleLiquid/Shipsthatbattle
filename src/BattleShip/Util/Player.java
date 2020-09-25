@@ -5,9 +5,9 @@ import BattleShip.SetupField;
 import javafx.scene.paint.Color;
 
 public class Player {
-	private SetupField setupField;
-	private BattleField battleField;
-	private Color playerColor;
+	protected SetupField setupField;
+	protected BattleField battleField;
+	protected Color playerColor;
 	
 	public Player(Color playerColor) {
 		this.playerColor = playerColor;
