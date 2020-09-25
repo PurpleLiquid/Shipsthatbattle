@@ -23,6 +23,8 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 	private Player player1 = new Player(Color.BLUE);
+	
+	// For now till I decide to add multiplayer functionality
 	private Player player2 = new PlayerBot(Color.RED);
 	
 	@Override
@@ -98,6 +100,7 @@ public class Main extends Application {
 				if(player1.getSetupField().getShips().size() == 5) {
 					try {
 						player1.getBattleField().setShips(player1.getSetupField().getShips());
+						player2.getBattleField().setShips(player2.getSetupField().getShips());
 					} catch (InvalidShipAmount e) {
 						e.printStackTrace();
 					};

@@ -44,25 +44,25 @@ public class ShipSetup {
 		// As well as whether they will be vertical or horizontal
 		
 		// Carrier
-		carrier.setOriginX(2);
+		carrier.setOriginX(1);
 		carrier.setOriginY(0);
 		
 		// Battleship
-		battleship.setOriginX(9);
+		battleship.setOriginX(8);
 		battleship.setOriginY(2);
 		
 		// cruiser
 		cruiser.setOriginX(3);
 		cruiser.setOriginY(3);
-		cruiser.setHorizontal(true);
+		cruiser.setHorizontal(false);
 		
 		// sub
 		sub.setOriginX(5);
 		sub.setOriginY(3);
-		sub.setHorizontal(true);
+		sub.setHorizontal(false);
 		
 		// destroyer
 		destroyer.setOriginX(8);
-		destroyer.setOriginY(2);
+		destroyer.setOriginY(7);
 	}
 }
