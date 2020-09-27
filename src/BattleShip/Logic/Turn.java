@@ -1,5 +1,12 @@
 package BattleShip.Logic;
 
+import BattleShip.Util.Player;
+
 public class Turn {
-	// Not sure what this should be yet
+	private int turnCounter = 1;
+	
+	public void endTurn(Player player) {
+		
+	}
+	
 }

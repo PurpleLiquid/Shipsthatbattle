@@ -3,6 +3,7 @@ package BattleShip;
 import java.util.ArrayList;
 
 import BattleShip.Exceptions.InvalidShipAmount;
+import BattleShip.Logic.Turn;
 import BattleShip.Util.ShipSelector;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -19,7 +20,8 @@ public class BattleField extends Pane {
 	protected Group tileGroup = new Group();
 	
 	private ArrayList<Ship> shipList = new ArrayList<Ship>();
-	Color playerColor;
+	private Color playerColor;
+	private Turn turn;
 
 	public BattleField(Color playerColor) {
 		getChildren().add(tileGroup);
